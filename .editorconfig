@@ -1,0 +1,12 @@
+root = true
+
+[*]
+indent_style = space
+charset = utf-8
+trim_trailing_whitespace = false
+insert_final_newline = true
+[*.go]
+indent_size = 8
+
+[*.{ts,js,jsx,json,yaml,yml,Dockerfile,Makefile,html}]
+indent_size = 4
