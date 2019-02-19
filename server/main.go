@@ -6,29 +6,23 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/gorilla/mux"
+	"github.com/astaphobia/rajasinga/server/controllers"
 )
 
 func main() {
 	var (
 		PORT string
 	)
+
 	PORT = os.Getenv("PORT")
 	if len(PORT) <= 0 {
 		PORT = "3001"
 	}
 
-	r := mux.NewRouter()
-	r.HandleFunc("/", HomeHandler)
-
+	controllers := controllers.ControllerInit()
 	srv := &http.Server{
-		Handler: r,
-		Addr:    fmt.Sprintf(":%s", PORT),
+		Handler: controllers.Router,
+		Addr:    fmt.Sprintf("0.0.0.0:%s", PORT),
 	}
-	log.Fatal(srv.ListenAndServe())
-}
-
-func HomeHandler(w http.ResponseWriter, r *http.Request) {
-	w.WriteHeader(http.StatusOK)
-	fmt.Fprintf(w, "yiihaaa")
+	log.Fatal(srv.ListenAndServe(), nil)
 }

@@ -1,5 +1,5 @@
 FROM golang:1.11
-WORKDIR /go/src/github.com/astaphobia/rajasinga/
+WORKDIR /go/src/github.com/astaphobia/rajasinga/server
 COPY . .
 RUN if ! which dep > /dev/null;\
     then go get github.com/golang/dep/...; \
