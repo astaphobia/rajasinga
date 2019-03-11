@@ -38,6 +38,7 @@ module.exports = {
         stats: {
             modules: false,
         },
+        //disableHostCheck: true
     },
     plugins: [
         new htmlWebpackPlugin({
