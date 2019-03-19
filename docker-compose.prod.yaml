@@ -5,13 +5,13 @@ services:
         build: 
             context: ./server
             dockerfile: Dockerfile
-            target: dev
+            target: prod
         restart: always
         ports:
             - '3001'
         environment:
             - PORT=3001
-            - MODE=development
+            - MODE=production
         volumes:
             - 'rajadir:/server'
         networks:
@@ -21,12 +21,12 @@ services:
         build: 
             context: ./client
             dockerfile: Dockerfile
-            target: dev
+            target: prod
         restart: always
         ports:
             - '5001'
         environment:
-            - mode=development
+            - mode=production
             - PORT=5001
         volumes:
             - rajadir:/client

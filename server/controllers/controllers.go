@@ -14,6 +14,7 @@ func ControllerInit() *Controllers {
 	)
 
 	route := mux.NewRouter()
+	route.StrictSlash(true)
 	route.Headers(
 		"Content-Type", "application/json",
 	)
