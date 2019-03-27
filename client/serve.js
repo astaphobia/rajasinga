@@ -25,6 +25,7 @@ if (config.mode === 'development') {
 
 const staticpath = path.join(__dirname, 'dist')
 app.use(express.static(staticpath))
+app.get('/', (_req, res) => res.sendFile(path.resolve(__dirname, 'dist', 'index.html')))
 app.listen(port, '0.0.0.0', function onStart(err) {
     if (err) {
       console.log(err);
