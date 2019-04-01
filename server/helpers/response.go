@@ -11,8 +11,8 @@ type Response struct {
 func (r Response) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
 		StatusCode int         `json:"status_code"`
-		Data       interface{} `json:"data"`
-		Message    interface{} `json:"message"`
+		Data       interface{} `json:"data,omitempty"`
+		Message    interface{} `json:"message,omitempty"`
 	}{
 		StatusCode: r.StatusCode,
 		Data:       r.Data,

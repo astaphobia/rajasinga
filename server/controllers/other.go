@@ -1,20 +1,18 @@
 package controllers
 
-type (
-	ErrorResponse interface {
-		error
-		Status() int
-	}
+import (
+	"encoding/json"
+	"net/http"
 
-	StatusError struct {
-		Code int
-		Err  error
-	}
+	"github.com/astaphobia/rajasinga/server/helpers"
 )
 
-func (se StatusError) Error() string {
-	return se.Err.Error()
-}
-func (se StatusError) Status() int {
-	return se.Code
+func NotFoundController(w http.ResponseWriter, r *http.Request) {
+	var (
+		response helpers.Response
+	)
+
+	w.WriteHeader(http.StatusNotFound)
+	response = helpers.NewResponse(http.StatusNotFound, nil, "url not found")
+	json.NewEncoder(w).Encode(response)
 }

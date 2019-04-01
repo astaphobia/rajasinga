@@ -27,9 +27,12 @@ func main() {
 		PORT = "3001"
 	}
 
-	controllers := controllers.ControllerInit()
+	ctrl := controllers.Controllers{}
+	ctrl.Init()
+	ctrl.RegisterRoutes()
+
 	srv := &http.Server{
-		Handler:      controllers.Router,
+		Handler:      ctrl.Router,
 		Addr:         fmt.Sprintf("0.0.0.0:%s", PORT),
 		WriteTimeout: 15 * time.Second,
 		ReadTimeout:  15 * time.Second,

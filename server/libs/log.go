@@ -79,7 +79,7 @@ func (l *Logger) LoggerInit() {
 
 	log = logrus.New()
 	log.SetFormatter(&logrus.JSONFormatter{})
-	log.SetReportCaller(true)
+	log.SetReportCaller(false)
 	log.Hooks.Add(&fimHook{
 		Writer:    logFile,
 		LogLevels: logLevels,
@@ -103,5 +103,8 @@ func (l Logger) Middleware(next http.Handler) http.Handler {
 			"ip":      r.RemoteAddr,
 			"latency": l.clock.Since(start),
 		}).Info("Kings")
+		if next != nil {
+			next.ServeHTTP(w, r)
+		}
 	})
 }

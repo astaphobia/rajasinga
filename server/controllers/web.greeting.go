@@ -7,7 +7,7 @@ import (
 	"github.com/astaphobia/rajasinga/server/helpers"
 )
 
-func GreetingController(w http.ResponseWriter, r *http.Request) {
+func (c *Controllers) GreetingController(w http.ResponseWriter, r *http.Request) {
 	var (
 		response helpers.Response
 	)
