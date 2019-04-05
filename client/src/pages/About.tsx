@@ -1,15 +1,15 @@
 import React from 'react'
 
-function Home() {
+function AboutPage() {
   return (
     <section>
       <div className="hero-body">
         <div className="container has-text-centered">
-          <h1>Home Page</h1>
+          <h1>About Page</h1>
         </div>
       </div>
     </section>
   )
 }
 
-export default Home
+export default AboutPage

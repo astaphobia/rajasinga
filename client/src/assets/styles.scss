@@ -1,0 +1,10 @@
+$font-stack: Helvetica, sans-serif;
+
+body {
+    font: $font-stack;
+}
+
+h1.brand {
+    font-size: 1.5rem !important;
+    font-weight: 600;
+}

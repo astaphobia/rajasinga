@@ -1,15 +1,17 @@
 import React from 'react'
 
-function Home() {
+function NotFound({ location }: { location: any }) {
   return (
     <section>
       <div className="hero-body">
         <div className="container has-text-centered">
-          <h1>Home Page</h1>
+          <h1 className="center">
+            404 Not Found <code>{location.pathname}</code>
+          </h1>
         </div>
       </div>
     </section>
   )
 }
 
-export default Home
+export default NotFound
