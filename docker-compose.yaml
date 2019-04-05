@@ -1,53 +1,54 @@
-version: '3.6'
+version: "3.6"
 services:
-    api:
-        container_name: 'rajasinga_api'
-        build: 
-            context: ./server
-            dockerfile: Dockerfile
-            target: dev
-        restart: always
-        ports:
-            - '3001'
-        environment:
-            - PORT=3001
-            - MODE=development
-        volumes:
-            - 'rajadir:/server:rw'
-        networks:
-            - raja_network
-    client:
-        container_name: 'rajasinga_client'
-        build: 
-            context: ./client
-            dockerfile: Dockerfile
-            target: dev
-        restart: always
-        ports:
-            - '5001'
-        environment:
-            - NODE_MODE=development
-            - PORT=5001
-        volumes:
-            - rajadir:/client:rw
-        networks: 
-            - raja_network
-    proxy:
-        container_name: 'rajasinga_proxy'
-        build: ./proxy
-        restart: always
-        volumes:
-             - rajadir:/etc/nginx/conf.d/default.conf
-        networks:
-            - raja_network
-        links:
-            - api:api
-            - client:client
-        ports:
-            - '80:80'
+  api:
+    container_name: "rajasinga_api"
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+      target: dev
+    restart: always
+    ports:
+      - "3001"
+    environment:
+      - PORT=3001
+      - MODE=development
+    volumes:
+      - ./server:/go/src/github.com/astaphobia/rajasinga/server:rw
+    networks:
+      - raja_network
+  client:
+    depends_on:
+      - api
+    container_name: "rajasinga_client"
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+      target: dev
+    restart: always
+    ports:
+      - "5001"
+    environment:
+      - NODE_MODE=development
+      - PORT=5001
+    volumes:
+      - ./client:/rajasinga/client:rw
+    networks:
+      - raja_network
+  proxy:
+    container_name: "rajasinga_proxy"
+    build: ./proxy
+    restart: always
+    volumes:
+      - ./proxy:/etc/nginx/conf.d/default.conf
+    networks:
+      - raja_network
+    links:
+      - api:api
+      - client:client
+    ports:
+      - "80:80"
+      - "8080:8080"
 
 networks:
-    raja_network:
-        driver: bridge
-volumes:
-    rajadir:
+  raja_network:
+    driver: bridge
