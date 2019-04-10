@@ -31,7 +31,7 @@ function TopNav() {
                   <span className="icon">
                     <i className="fa fa-superpowers" />
                   </span>
-                  <span>Examples</span>
+                  <span>About Me</span>
                 </Link>
               </span>
             </div>

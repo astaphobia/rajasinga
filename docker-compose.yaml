@@ -14,7 +14,6 @@ services:
       - MODE=development
     volumes:
       - ./server:/go/src/github.com/astaphobia/rajasinga/server:rw
-      - rajasinga_data:/go/src/github.com/astaphobia/rajasinga/server
     networks:
       - raja_network
   client:
@@ -33,7 +32,7 @@ services:
       - PORT=5001
     volumes:
       - ./client:/rajasinga/client:rw
-      - rajasinga_data:/rajasinga/client
+      - /rajasinga/client/node_modules/
     networks:
       - raja_network
   proxy:
@@ -42,7 +41,6 @@ services:
     restart: always
     volumes:
       - ./proxy:/etc/nginx/conf.d/default.conf
-      - rajasinga_data:/etc/nginx/conf.d/default.conf
     networks:
       - raja_network
     links:
@@ -55,5 +53,3 @@ services:
 networks:
   raja_network:
     driver: bridge
-volumes:
-  rajasinga_data:
