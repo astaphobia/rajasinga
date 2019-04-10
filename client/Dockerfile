@@ -1,4 +1,4 @@
-FROM node:latest as base
+FROM node:8.12 as base
 
 WORKDIR /rajasinga/client
 COPY . .
